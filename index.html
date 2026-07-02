@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <title>PodPilot</title>
+
+  <link rel="icon" href="favicon/favicon.png" sizes="any">
+  <link rel="manifest" href="./site.webmanifest">
+  <meta name="theme-color" content="#0f0f10">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="phone">
+    <div class="app">
+      <header class="header">
+        <button class="back-button" id="backButton" aria-label="戻る">‹</button>
+
+        <button class="logo-area" data-page-target="home" aria-label="ホームへ">
+          <div class="logo-mark">
+            <span class="logo-play"><img src="favicon/favicon.png" width="21px"></span>
+          </div>
+          <div class="logo-text">podpilot</div>
+        </button>
+
+        <button class="user-button" data-page-target="profile" aria-label="プロフィール">専</button>
+      </header>
+
+      <main class="content">
+        <section class="page active" id="homePage" data-page="home">
+          <section class="intro">
+            <h1>今日の移動時間に、必要な話を。</h1>
+            <p>
+              マーケティング、マネジメント、キャリア。
+              通勤や移動の時間に合わせて、今聴くべきPodcastを整理します。
+            </p>
+          </section>
+
+          <section class="now-card" id="featuredCard">
+            <div>
+              <p class="small-text">次に聴く</p>
+              <h2>中堅マーケターのための昇進戦略</h2>
+              <p class="meta">28分 · Career</p>
+            </div>
+
+            <button class="play-button" id="playFeatured" aria-label="再生">▶</button>
+          </section>
+
+          <section class="search compact-search">
+            <input type="text" id="homeSearchInput" placeholder="番組・キーワードを検索" />
+          </section>
+
+          <section class="tabs">
+            <button class="tab active" data-category="all">すべて</button>
+            <button class="tab" data-category="marketing">マーケ</button>
+            <button class="tab" data-category="career">キャリア</button>
+            <button class="tab" data-category="fitness">移動・運動</button>
+            <button class="tab" data-category="music">音楽</button>
+          </section>
+
+          <section class="summary">
+            <div class="summary-item">
+              <span>今週</span>
+              <strong>3.5h</strong>
+            </div>
+
+            <div class="summary-item">
+              <span>保存済み</span>
+              <strong>12</strong>
+            </div>
+
+            <div class="summary-item">
+              <span>完了</span>
+              <strong>8</strong>
+            </div>
+          </section>
+
+          <section class="episodes">
+            <div class="section-heading">
+              <h2>おすすめ</h2>
+            </div>
+
+            <div class="episode-list" id="episodeList"></div>
+          </section>
+        </section>
+
+        <section class="page" id="searchPage" data-page="search">
+          <section class="page-heading">
+            <h1>Search</h1>
+            <p>職種、気分、移動時間からエピソードを探せます。</p>
+          </section>
+
+          <section class="search">
+            <input type="text" id="searchPageInput" placeholder="例：マーケ、昇進、営業連携" />
+          </section>
+
+          <section class="suggestion-block">
+            <h2>よく使うテーマ</h2>
+            <div class="keyword-row">
+              <button data-search-keyword="マーケ">マーケ</button>
+              <button data-search-keyword="昇進">昇進</button>
+              <button data-search-keyword="営業">営業</button>
+              <button data-search-keyword="ブランド">ブランド</button>
+            </div>
+          </section>
+
+          <section class="episodes">
+            <div class="section-heading">
+              <h2>検索結果</h2>
+            </div>
+            <div class="episode-list" id="searchResultList"></div>
+          </section>
+        </section>
+
+        <section class="page" id="libraryPage" data-page="library">
+          <section class="page-heading">
+            <h1>Library</h1>
+            <p>保存した番組と、あとで聴きたいエピソード。</p>
+          </section>
+
+          <section class="library-card">
+            <div>
+              <span>Saved Mix</span>
+              <h2>週末に聴く、マーケとキャリア</h2>
+              <p>6 episodes · 2.1h</p>
+            </div>
+            <button class="small-play-button">▶</button>
+          </section>
+
+          <section class="library-tabs">
+            <button class="active" data-library-filter="saved">保存済み</button>
+            <button data-library-filter="recent">最近再生</button>
+            <button data-library-filter="downloaded">DL済み</button>
+          </section>
+
+          <section class="episodes">
+            <div class="episode-list" id="libraryList"></div>
+          </section>
+        </section>
+
+        <section class="page" id="profilePage" data-page="profile">
+          <section class="profile-hero">
+            <div class="profile-avatar">専</div>
+            <h1>古岡 専</h1>
+            <p>Marketing · Roppongi</p>
+          </section>
+
+          <section class="profile-stats">
+            <div>
+              <span>今月</span>
+              <strong>14.2h</strong>
+            </div>
+            <div>
+              <span>完了</span>
+              <strong>32</strong>
+            </div>
+            <div>
+              <span>連続</span>
+              <strong>6日</strong>
+            </div>
+          </section>
+
+          <section class="settings-list">
+            <button>
+              <span>通勤ルート</span>
+              <strong>菊名 → 六本木</strong>
+            </button>
+            <button>
+              <span>重点テーマ</span>
+              <strong>昇進・マーケ・営業連携</strong>
+            </button>
+            <button>
+              <span>再生スタイル</span>
+              <strong>移動時間に合わせる</strong>
+            </button>
+            <button>
+              <span>通知</span>
+              <strong>平日 8:10</strong>
+            </button>
+          </section>
+        </section>
+
+        <section class="page player-page" id="playerPage" data-page="player">
+          <section class="player-screen">
+            <div class="large-art">
+              <div class="large-logo">
+                <span></span>
+              </div>
+            </div>
+
+            <div class="player-screen-meta">
+              <p id="fullPlayerLabel">Career</p>
+              <h1 id="fullPlayerTitle">中堅マーケターのための昇進戦略</h1>
+              <span id="fullPlayerDescription">上司視点で見られる動き方 · 28分</span>
+            </div>
+
+            <div class="full-progress">
+              <div class="progress">
+                <div class="progress-fill" id="fullProgressFill"></div>
+              </div>
+              <div class="time-row">
+                <span id="elapsedTime">0:00</span>
+                <span id="remainingTime">-28:00</span>
+              </div>
+            </div>
+
+            <div class="full-controls">
+              <button id="rewindBtn" aria-label="15秒戻る">−15</button>
+              <button id="fullPlayBtn" class="full-play-button" aria-label="再生">▶</button>
+              <button id="forwardBtn" aria-label="15秒進む">＋15</button>
+            </div>
+
+            <section class="episode-notes">
+              <h2>この回で得られること</h2>
+              <ul>
+                <li>中堅社員が評価される行動の整理</li>
+                <li>マーケ職が昇進面談で話しやすい成果の見せ方</li>
+                <li>明日の仕事で試せる小さなアクション</li>
+              </ul>
+            </section>
+          </section>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <section class="player" id="miniPlayer">
+          <div class="player-art">
+            <span></span>
+          </div>
+
+          <div class="player-info">
+            <p id="playerCategory">Career</p>
+            <h3 id="playerTitle">再生するエピソードを選択</h3>
+            <div class="progress">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+          </div>
+
+          <button id="mainPlayBtn" class="player-button" aria-label="再生">▶</button>
+        </section>
+
+        <nav class="bottom-nav">
+          <button class="active" data-page-target="home">Home</button>
+          <button data-page-target="search">Search</button>
+          <button data-page-target="library">Library</button>
+          <button data-page-target="profile">Profile</button>
+        </nav>
+      </footer>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
