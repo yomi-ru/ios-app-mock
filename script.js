@@ -77,6 +77,9 @@ const pages = document.querySelectorAll(".page");
 const navButtons = document.querySelectorAll(".bottom-nav button");
 const pageTargetButtons = document.querySelectorAll("[data-page-target]");
 const backButton = document.getElementById("backButton");
+const appHeader = document.querySelector(".header");
+const appFooter = document.querySelector(".footer");
+const registerForm = document.getElementById("registerForm");
 
 const episodeList = document.getElementById("episodeList");
 const searchResultList = document.getElementById("searchResultList");
@@ -110,8 +113,9 @@ let currentEpisodeIndex = 0;
 let isPlaying = false;
 let progress = 0;
 let timer = null;
-let previousPage = "home";
-let currentPage = "home";
+let previousPage = "register";
+let currentPage = "register";
+let userProfile = null;
 
 function showPage(pageName, options = {}) {
   previousPage = currentPage;
@@ -126,6 +130,10 @@ function showPage(pageName, options = {}) {
   });
 
   backButton.classList.toggle("visible", pageName === "player");
+
+  const isRegister = pageName === "register";
+  appHeader.classList.toggle("register-mode", isRegister);
+  appFooter.classList.toggle("hidden", isRegister);
 
   if (pageName === "player") {
     miniPlayer.classList.add("hidden");
@@ -374,7 +382,39 @@ featuredCard.addEventListener("click", () => {
   showPage("player");
 });
 
+
+registerForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  userProfile = {
+    name: document.getElementById("nameInput").value.trim(),
+    email: document.getElementById("emailInput").value.trim(),
+    homeStation: document.getElementById("homeStationInput").value.trim(),
+    workStation: document.getElementById("workStationInput").value.trim()
+  };
+
+  const displayName = userProfile.name || "古岡 専";
+  const firstChar = displayName.replace(/\s/g, "").charAt(0) || "専";
+
+  document.querySelector(".user-button").textContent = firstChar;
+  document.querySelector(".profile-avatar").textContent = firstChar;
+
+  const profileTitle = document.querySelector(".profile-hero h1");
+  const routeButton = document.querySelector(".settings-list button:first-child strong");
+
+  if (profileTitle) {
+    profileTitle.textContent = displayName;
+  }
+
+  if (routeButton) {
+    routeButton.textContent = `${userProfile.homeStation} → ${userProfile.workStation}`;
+  }
+
+  showPage("home");
+});
+
 selectEpisode(0);
 renderHomeEpisodes();
 renderSearchResults();
 renderLibrary();
+showPage("register");

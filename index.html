@@ -20,7 +20,7 @@
 
         <button class="logo-area" data-page-target="home" aria-label="ホームへ">
           <div class="logo-mark">
-            <span class="logo-play"><img src="favicon/favicon.png" width="21px"></span>
+            <span class="logo-play"></span>
           </div>
           <div class="logo-text">podpilot</div>
         </button>
@@ -29,7 +29,62 @@
       </header>
 
       <main class="content">
-        <section class="page active" id="homePage" data-page="home">
+
+        <section class="page active register-page" id="registerPage" data-page="register">
+          <section class="register-hero">
+            <div class="register-logo">
+              <div class="logo-mark large">
+                <span class="logo-play"></span>
+              </div>
+              <div class="logo-text">podpilot</div>
+            </div>
+
+            <h1>移動時間に合わせて、聴くべき番組を整える。</h1>
+            <p>
+              自宅と会社の最寄り駅から通勤時間を想定し、仕事・キャリアに合うPodcast体験を作ります。
+            </p>
+          </section>
+
+          <form class="register-form" id="registerForm">
+            <label>
+              <span>名前</span>
+              <input type="text" id="nameInput" placeholder="例：古岡 専" required />
+            </label>
+
+            <label>
+              <span>メールアドレス</span>
+              <input type="email" id="emailInput" placeholder="example@mail.com" required />
+            </label>
+
+            <label>
+              <span>パスワード</span>
+              <input type="password" id="passwordInput" placeholder="8文字以上" minlength="8" required />
+            </label>
+
+            <div class="station-grid">
+              <label>
+                <span>家の最寄駅</span>
+                <input type="text" id="homeStationInput" placeholder="例：菊名" required />
+              </label>
+
+              <label>
+                <span>会社の最寄駅</span>
+                <input type="text" id="workStationInput" placeholder="例：六本木" required />
+              </label>
+            </div>
+
+            <button type="submit" class="register-submit">
+              AIにコーディネートしてもらう
+            </button>
+          </form>
+
+          <p class="register-note">
+            登録後、通勤時間や興味に合わせた番組リストをホームに表示します。
+          </p>
+        </section>
+
+
+        <section class="page" id="homePage" data-page="home">
           <section class="intro">
             <h1>今日の移動時間に、必要な話を。</h1>
             <p>
@@ -242,7 +297,7 @@
         </section>
 
         <nav class="bottom-nav">
-          <button class="active" data-page-target="home">Home</button>
+          <button data-page-target="home">Home</button>
           <button data-page-target="search">Search</button>
           <button data-page-target="library">Library</button>
           <button data-page-target="profile">Profile</button>
